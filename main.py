@@ -8,7 +8,7 @@ set_day = 0  # init
 year = str(datetime.datetime.now())[:4]
 w_list = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日']
 
-print("**input date like \"0702\" if you want to express July Second.**")
+print("**Input date like \"0702\" if you want to express July Second.**")
 print("if you finish to input date, type \"end\".")
 print("")
 for i in range(max_days):
@@ -22,7 +22,7 @@ for i in range(max_days):
             print("always invalid date")
             exit()
         invalid_date_flag = 0
-    print("input date : ", end="")
+    print("input date: ", end="")
     date_[i] = input()
     # print(i)    # debug
     if date_[i] == "end":
@@ -37,6 +37,20 @@ for i in range(max_days):
         continue
 
 print("")
+
+# time
+from_time = ""  # init
+hours = ""  # init
+print("Generate setting time of every hour.")
+print("**Input information, from what time to what time.**")
+print("from what time: ", end="")
+from_time = input()
+from_time = int(from_time)
+print("how many hours: ", end="")
+hours = input()
+hours = int(hours)
+print("")
+
 # confirm only small error
 for i in range(max_days):
     # month
@@ -59,8 +73,9 @@ for i in range(max_days):
         break
     else:
         set_day = int(date_[i][2]) * 10 + int(date_[i][3])
-    # set dastetime.date()
     dt = datetime.date(int(year), set_month, set_day)
     # print
-    print(dt, end=" ")
-    print(w_list[dt.weekday()][0])
+    for j in range(hours):
+        print(dt, end=" ")
+        print(w_list[dt.weekday()][0], end=" ")
+        print("%d:00 ~ %d:00" % ((from_time + j) % 24, (from_time + j + 1) % 24))
