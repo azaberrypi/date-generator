@@ -1,15 +1,17 @@
 import datetime
 
-max_days = 7  # 最大で何日分の予定を作るか
+max_days = 10  # maximum number of days
 date_ = [""] * max_days
-invalid_date_flag = 0  # 入力ミス検知用
+invalid_date_flag = 0  # for the detection of miss inputting
 set_month = 0  # init
 set_day = 0  # init
-year = str(datetime.datetime.now())[:4]
+year = str(datetime.datetime.now())[:4]  # get the year of the day you are running.
 w_list = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日']
+# w_list_English = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Staturday', 'Sunday']
 
+# date
 print("**Input date like \"0702\" if you want to express July Second.**")
-print("if you finish to input date, type \"end\".")
+print("if you finish to input dates, type \"end\".")
 print("")
 for i in range(max_days):
     if invalid_date_flag == 1:
@@ -24,7 +26,6 @@ for i in range(max_days):
         invalid_date_flag = 0
     print("input date: ", end="")
     date_[i] = input()
-    # print(i)    # debug
     if date_[i] == "end":
         if i != 0:
             max_days = i
@@ -39,8 +40,6 @@ for i in range(max_days):
 print("")
 
 # time
-from_time = ""  # init
-hours = ""  # init
 print("Generate setting time of every hour.")
 print("**Input information, from what time to what time.**")
 print("from what time: ", end="")
@@ -49,9 +48,10 @@ from_time = int(from_time)
 print("how many hours: ", end="")
 hours = input()
 hours = int(hours)
+
 print("")
 
-# confirm only small error
+# confirm only small error of dates you inputted
 for i in range(max_days):
     # month
     if date_[i][0] == "0":
